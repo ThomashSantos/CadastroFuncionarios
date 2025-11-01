@@ -1,11 +1,14 @@
 from fonte.modulos.candidatos.capturada_dados import CapturadaDados
 from fonte.modulos.orange_hrm.portal_orange import PortalOrangeHRM
+from fonte.modulos.botcity.workshop_botcity import download_arquivo
 from playwright.sync_api import sync_playwright
 from fonte import logging, pasta_entrada
 import os
 
 
 if __name__ == "__main__":
+    download_arquivo(url=os.environ.get("URL_ARQUIVO_CANDIDATOS"),
+                     destination="banco.sql.csv")
     caminho_arquivo = os.path.join(pasta_entrada, "banco.sql.csv")
     capturador = CapturadaDados(caminho_arquivo)
     dados = capturador.ler_dados()
